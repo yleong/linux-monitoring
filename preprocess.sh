@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -vP '^Active|^Proto|^procs|swpd|available' $1 | awk -f process.awk
+grep -hvP '^Active|^Proto|^procs|swpd|available' $@ | awk -f process.awk | sort | uniq | sed 's/ESTABLISHED/&,/g' | sed 's/^udp.*$/&,/g' > netstat.csv
