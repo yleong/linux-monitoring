@@ -1,6 +1,2 @@
 #!/bin/bash
-
-# replaces multiple spaces with commas
-# so that spark can process it later
-
-sed -i -E 's/ {2,}/,/g' stats*
+grep -vP '^Active|^Proto|^procs|swpd|available' $1 | awk -f process.awk
